@@ -1,8 +1,7 @@
 package hellojpa;
 
 import jakarta.persistence.*;
-
-import java.util.List;
+import jpabook.jpashop.domain.Member;
 
 public class JpaMain {
 
@@ -62,10 +61,27 @@ public class JpaMain {
 //            em.persist(member);
 //            em.flush();
 //            System.out.println("tx before");
-            Member member = new Member();
-//            member.setId("usr_A");
-            member.setUsername("usr_nm1");
-            em.persist(member);
+//            MemberOld memberOld = new MemberOld();
+////            member.setId("usr_A");
+//            memberOld.setUsername("usr_nm1");
+//            em.persist(memberOld);
+
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            MemberOld memberOld = new MemberOld();
+            memberOld.setUsername("Member1");
+            memberOld.setTeam(team);
+            em.persist(memberOld);
+
+            //조회 1차 캐시에서 가져와서 셀렉트 DB 안함
+            MemberOld memberOld1 = em.find(MemberOld.class, memberOld.getId());
+            System.out.println("findTeam"+memberOld1.getTeam());
+
+            //team 있다가정하고 진행
+            Team team1 = em.find(Team.class, 100L);
+            memberOld1.setTeam(team1);
             tx.commit();
         }
         catch (Exception e)
