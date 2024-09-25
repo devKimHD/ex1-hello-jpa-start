@@ -26,6 +26,12 @@ public class MemberOld {
         this.team = team;
     }
 
+    public void changeTeam(Team team) {
+        this.team = team;
+        //연관관계 편의성 메소드 실수방지
+        team.getMembers().add(this);
+    }
+
     @ManyToOne
     @JoinColumn(name="TEAM_ID")
     private  Team team;
@@ -61,5 +67,14 @@ public class MemberOld {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberOld{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
     }
 }
