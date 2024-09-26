@@ -41,8 +41,15 @@ public class JpaMain {
 ////            for (MemberOld member : members) {
 ////                System.out.println("m ="+member);
 ////            }
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            MemberOld memberOld = new MemberOld();
+            memberOld.setUsername("member1");
+            em.persist(memberOld);
+
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(memberOld);
+            em.persist(team);
+
             tx.commit();
         }
         catch (Exception e)

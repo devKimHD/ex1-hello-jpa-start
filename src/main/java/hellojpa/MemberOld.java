@@ -2,6 +2,9 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 //@Table(name="MEMBER")
 //@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq")
@@ -18,23 +21,33 @@ public class MemberOld {
     @Column(name = "USERNAME")
     private String username;
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    public void changeTeam(Team team) {
-        this.team = team;
-        //연관관계 편의성 메소드 실수방지
-        team.getMembers().add(this);
-    }
-
     @ManyToOne
-    @JoinColumn(name="TEAM_ID")
-    private  Team team;
+    @JoinColumn(name="TEAM_ID",insertable = false,updatable = false) // 읽기 전용으로 강제함
+    private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
+    @OneToMany(mappedBy = "memberOld")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
+//    public Team getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
+//
+//    public void changeTeam(Team team) {
+//        this.team = team;
+//        //연관관계 편의성 메소드 실수방지
+//        team.getMembers().add(this);
+//    }
+//
+//    @ManyToOne
+//    @JoinColumn(name="TEAM_ID")
+//    private  Team team;
 //    @Column(name="TEAM_ID")
 //    private Long teamId;
 //    private Integer age;
@@ -74,7 +87,7 @@ public class MemberOld {
         return "MemberOld{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", team=" + team +
+//                ", team=" + team +
                 '}';
     }
 }

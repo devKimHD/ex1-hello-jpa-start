@@ -12,7 +12,9 @@ public class Team {
     private Long id;
 
     private String name;
-    @OneToMany(mappedBy = "team") //반대편 연관에 대한 변수명적기
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
+//    @OneToMany(mappedBy = "team") //반대편 연관에 대한 변수명적기
     private List<MemberOld> members = new ArrayList<>();
 
     public List<MemberOld> getMembers() {
@@ -39,10 +41,10 @@ public class Team {
         this.name = name;
     }
 
-    public void addMember(MemberOld memberOld) {
-        memberOld.setTeam(this);
-        members.add(memberOld);
-    }
+//    public void addMember(MemberOld memberOld) {
+//        memberOld.setTeam(this);
+//        members.add(memberOld);
+//    }
 
 //    @Override
 //    public String toString() {
