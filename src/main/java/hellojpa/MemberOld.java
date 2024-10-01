@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 //@Table(name="MEMBER")
 //@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq")
-public class MemberOld {
+public class MemberOld extends BaseEntity2 {
 
 
     @Id

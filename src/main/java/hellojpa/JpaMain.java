@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class JpaMain {
@@ -43,6 +44,8 @@ public class JpaMain {
 ////            }
             MemberOld memberOld = new MemberOld();
             memberOld.setUsername("member1");
+            memberOld.setCreatedBy("adm");
+            memberOld.setCreatedDate(LocalDateTime.now());
             em.persist(memberOld);
 
             Team team = new Team();

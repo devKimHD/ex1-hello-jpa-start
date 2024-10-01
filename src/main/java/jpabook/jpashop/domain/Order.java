@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="ORDERS")
-public class Order {
+public class Order extends BaseEntity {
     @Id @GeneratedValue
     @Column(name="ORDER_ID")
     private Long id;
@@ -24,6 +24,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
     public OrderStatus getStatus() {
         return status;
     }
