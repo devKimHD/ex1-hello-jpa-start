@@ -10,6 +10,6 @@ public class Locker {
     @Column(name = "LOCKER_ID")
     private Long id;
     private String name;
-    @OneToOne(mappedBy = "locker")
-    private MemberOld member;
+//    @OneToOne(mappedBy = "locker")
+//    private MemberOld member;
 }

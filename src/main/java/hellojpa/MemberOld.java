@@ -21,23 +21,24 @@ public class MemberOld extends BaseEntity2 {
     @Column(name = "USERNAME")
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name="TEAM_ID",insertable = false,updatable = false) // 읽기 전용으로 강제함
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="TEAM_ID",insertable = false,updatable = false) // 읽기 전용으로 강제함
+    @JoinColumn(name="TEAM_ID")
     private Team team;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
 
-    @OneToMany(mappedBy = "memberOld")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
+//    @OneToMany(mappedBy = "memberOld")
+//    private List<MemberProduct> memberProducts = new ArrayList<>();
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 //
 //    public void changeTeam(Team team) {
 //        this.team = team;
@@ -81,7 +82,10 @@ public class MemberOld extends BaseEntity2 {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    public void logicSout(MemberOld m1, MemberOld m2)
+    {
+        System.out.println("m1 == m2 = " + (m1 instanceof MemberOld));
+    }
     @Override
     public String toString() {
         return "MemberOld{" +

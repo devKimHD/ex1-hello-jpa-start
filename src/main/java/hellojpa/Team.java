@@ -12,9 +12,9 @@ public class Team extends BaseEntity2{
     private Long id;
 
     private String name;
-    @OneToMany
-    @JoinColumn(name = "TEAM_ID")
-//    @OneToMany(mappedBy = "team") //반대편 연관에 대한 변수명적기
+//    @OneToMany
+//    @JoinColumn(name = "TEAM_ID")
+    @OneToMany(mappedBy = "team") //반대편 연관에 대한 변수명적기
     private List<MemberOld> members = new ArrayList<>();
 
     public List<MemberOld> getMembers() {

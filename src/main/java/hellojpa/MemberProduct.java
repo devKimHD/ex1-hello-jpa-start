@@ -11,9 +11,9 @@ public class MemberProduct {
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private MemberOld memberOld;
+//    @ManyToOne
+//    @JoinColumn(name = "MEMBER_ID")
+//    private MemberOld memberOld;
 
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
