@@ -1,16 +1,23 @@
 package jpabook.jpashop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.util.Objects;
 
 @Embeddable
 public class Adress {
+    @Column(length = 10)
     private String city;
+    @Column(length = 20)
     private String street;
+    @Column(length = 5)
     private String zipcode;
 
-
+    public String fullAddress()
+    {
+        return getCity()+getStreet()+getZipcode();
+    }
     public Adress(String city, String street, String zipcode) {
         this.city = city;
         this.street = street;
@@ -39,11 +46,11 @@ public class Adress {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Adress adress = (Adress) o;
-        return Objects.equals(city, adress.city) && Objects.equals(street, adress.street) && Objects.equals(zipcode, adress.zipcode);
+        return Objects.equals(getCity(), adress.getCity()) && Objects.equals(getStreet(), adress.getStreet()) && Objects.equals(getZipcode(), adress.getZipcode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(city, street, zipcode);
+        return Objects.hash(getCity(), getStreet(), getZipcode());
     }
 }

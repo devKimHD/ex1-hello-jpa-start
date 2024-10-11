@@ -27,14 +27,14 @@ public class JpaMain {
             Member member = new Member();
             member.setName("hello");
             member.setAdress(adress);
-            member.setPeriod(new Period(LocalDateTime.now(), LocalDateTime.now()));
-
-            member.getFavoriteFoods().add("치킨");
-            member.getFavoriteFoods().add("치킨2");
-            member.getFavoriteFoods().add("치킨3");
-
-            member.getAdresseHistory().add(new AdressEntity(adress));
-            member.getAdresseHistory().add(new AdressEntity(new Adress("4","5","6")));
+//            member.setPeriod(new Period(LocalDateTime.now(), LocalDateTime.now()));
+//
+//            member.getFavoriteFoods().add("치킨");
+//            member.getFavoriteFoods().add("치킨2");
+//            member.getFavoriteFoods().add("치킨3");
+//
+//            member.getAdresseHistory().add(new AdressEntity(adress));
+//            member.getAdresseHistory().add(new AdressEntity(new Adress("4","5","6")));
             em.persist(member);
             //setter 제거해서 불변객체로 생성자 초기화만 가능하게 변경
 //            member.getAdress().setCity("newCity");

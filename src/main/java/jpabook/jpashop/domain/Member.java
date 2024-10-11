@@ -18,8 +18,8 @@ public class Member extends BaseEntity{
     private List<Order> orders = new ArrayList<>();
     private String name;
 
-    @Embedded
-    private Period period;
+//    @Embedded
+//    private Period period;
     @Embedded
     private Adress adress;
 //    @Embedded
@@ -30,10 +30,10 @@ public class Member extends BaseEntity{
 //    })
 //    private Adress workadress;
 
-    @ElementCollection
-    @CollectionTable(name = "FAVORITE_FOOD", joinColumns = @JoinColumn(name = "MEMBER_ID"))
-    @Column(name = "FOOD_NAME")// 컬럼이 하나라서 예외적으로 가능
-    private Set<String> favoriteFoods = new HashSet<>();
+//    @ElementCollection
+//    @CollectionTable(name = "FAVORITE_FOOD", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+//    @Column(name = "FOOD_NAME")// 컬럼이 하나라서 예외적으로 가능
+//    private Set<String> favoriteFoods = new HashSet<>();
 
 //    @ElementCollection
 //    @CollectionTable(name = "ADDRESS_HISTORY", joinColumns = @JoinColumn(name = "MEMBER_ID"))
@@ -41,25 +41,25 @@ public class Member extends BaseEntity{
 
     //실무에서 1대 다로
     //값타입 처럼 설정 걸기
-    @OneToMany(cascade = CascadeType.ALL ,orphanRemoval = true)
-    @JoinColumn(name = "MEMBER_ID")
-    private List<AdressEntity> adresseHistory = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL ,orphanRemoval = true)
+//    @JoinColumn(name = "MEMBER_ID")
+//    private List<AdressEntity> adresseHistory = new ArrayList<>();
+//
+//    public List<AdressEntity> getAdresseHistory() {
+//        return adresseHistory;
+//    }
+//
+//    public void setAdresseHistory(List<AdressEntity> adresseHistory) {
+//        this.adresseHistory = adresseHistory;
+//    }
 
-    public List<AdressEntity> getAdresseHistory() {
-        return adresseHistory;
-    }
-
-    public void setAdresseHistory(List<AdressEntity> adresseHistory) {
-        this.adresseHistory = adresseHistory;
-    }
-
-    public Set<String> getFavoriteFoods() {
-        return favoriteFoods;
-    }
-
-    public void setFavoriteFoods(Set<String> favoriteFoods) {
-        this.favoriteFoods = favoriteFoods;
-    }
+//    public Set<String> getFavoriteFoods() {
+//        return favoriteFoods;
+//    }
+//
+//    public void setFavoriteFoods(Set<String> favoriteFoods) {
+//        this.favoriteFoods = favoriteFoods;
+//    }
 
 //    public List<Adress> getAdresseHistory() {
 //        return adresseHistory;
@@ -77,13 +77,13 @@ public class Member extends BaseEntity{
         this.orders = orders;
     }
 
-    public Period getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Period period) {
-        this.period = period;
-    }
+//    public Period getPeriod() {
+//        return period;
+//    }
+//
+//    public void setPeriod(Period period) {
+//        this.period = period;
+//    }
 
     public Adress getAdress() {
         return adress;
