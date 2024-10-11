@@ -7,6 +7,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import jpabook.jpashop.domain.*;
 
 import java.time.LocalDateTime;
@@ -22,38 +25,30 @@ public class JpaMain {
         tx.begin();
         try
         {
-
-            Adress adress = new Adress("1", "2", "3");
+//            List<Member> resultList = em.createQuery("select m from Member m where m.name like '%kim%'", Member.class)
+//                    .getResultList();
+//            for (Member member : resultList) {
+//                System.out.println("member = " + member);
+//
+//            }
+            //Criteria 사용 준비
+//            CriteriaBuilder cb = em.getCriteriaBuilder();
+//            CriteriaQuery<Member> query = cb.createQuery(Member.class);
+//            //루트 클래스 (조회를 시작할 클래스)
+//            Root<Member> m = query.from(Member.class);
+//            //쿼리 생성
+//            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("name"), "kim"));
+//            List<Member> resultList = em.createQuery(cq).getResultList();
             Member member = new Member();
-            member.setName("hello");
-            member.setAdress(adress);
-//            member.setPeriod(new Period(LocalDateTime.now(), LocalDateTime.now()));
-//
-//            member.getFavoriteFoods().add("치킨");
-//            member.getFavoriteFoods().add("치킨2");
-//            member.getFavoriteFoods().add("치킨3");
-//
-//            member.getAdresseHistory().add(new AdressEntity(adress));
-//            member.getAdresseHistory().add(new AdressEntity(new Adress("4","5","6")));
+            member.setName("usr1");
             em.persist(member);
-            //setter 제거해서 불변객체로 생성자 초기화만 가능하게 변경
-//            member.getAdress().setCity("newCity");
-//            Adress newaAdress = new Adress("newCity", adress.getStreet(), adress.getZipcode());
-//            member.setAdress(newaAdress);
-            em.flush();
-            em.clear();
-            System.out.println(" ===============");
-            Member findMember = em.find(Member.class, member.getId());
-            Adress newaAdress = new Adress("newCity", adress.getStreet(), adress.getZipcode());
-            findMember.setAdress(newaAdress);
-
-//            findMember.getFavoriteFoods().remove("치킨");
-//            findMember.getFavoriteFoods().add("한식");
-            //equals hashcode 로 컬렉션이 찾아올것
-            System.out.println(" =============== up");
-//            findMember.getAdresseHistory().remove(new AdressEntity(new Adress("4","5","6")));
-//            findMember.getAdresseHistory().add(new AdressEntity(new Adress("city2","5","6")));
-
+            //if DB connect direct get -> query execute list
+            //no result -> force flush need
+//            List<Member> resultList = em.createNativeQuery("select * from MEMBER", Member.class)
+//                    .getResultList();
+//            for (Member member1 : resultList) {
+//                System.out.println("member1.getName() = " + member1.getName());
+//            }
             tx.commit();
         }
         catch (Exception e)
